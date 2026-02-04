@@ -30,7 +30,7 @@ public class Principal {
             SerieRepository repositorio,
             ConsumoApi consumoApi,
             ConvierteDatos conversor
-    ) {
+         ) {
         this.repositorio = repositorio;
         this.consumoApi = consumoApi;
         this.conversor = conversor;
@@ -41,7 +41,7 @@ public class Principal {
         var opcion = -1;
         while (opcion != 0) {
             var menu = """
-                    1 - Buscar series 
+                    1 - Buscar series
                     2 - Buscar episodios
                     3 - Mostrar series buscadas
                     4 - Buscar series por titulo
@@ -206,7 +206,8 @@ public class Principal {
         buscarPorTitulo();
         if (serieBuscada.isPresent()){
             Serie serie = serieBuscada.get();
-            List<Episodio> topEpisodios=repositorio.top5Episodios(serie, PageRequest.of(0, 5));
+
+            List<Episodio> topEpisodios=repositorio.top5Episodios(serie);
             topEpisodios.forEach(e->
                     System.out.printf("Serie: %s temporada %s Episodio %s evaluación %s ",
                             e.getSerie().getTitulo(),e.getTemporada(), e.getNumeroEpisodio(), e.getEvaluacion()));
